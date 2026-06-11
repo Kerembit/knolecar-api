@@ -6,19 +6,19 @@ const MI_PER_KM      = 0.621371;
 const VEHICLES = {
   "mercedes-e-class": {
     label: "Mercedes E-Class", minimumFare: 17, pickupFare: 7.5,
-    perMin: 0.95, perMile: 1.55, schedulingCharge: 12, hourlyBase: 55, nightSurcharge: 0.20,
+    perMin: 0.95, perMile: 1.55, schedulingCharge: 12, hourlyBase: 80, nightSurcharge: 0.20,
   },
   "mercedes-vito": {
     label: "Mercedes Vito", minimumFare: 55, pickupFare: 18,
-    perMin: 1.40, perMile: 2.20, schedulingCharge: 20, hourlyBase: 85, nightSurcharge: 0.20,
+    perMin: 1.40, perMile: 2.20, schedulingCharge: 20, hourlyBase: 100, nightSurcharge: 0.20,
   },
   "range-rover": {
     label: "Range Rover", minimumFare: 65, pickupFare: 15,
-    perMin: 1.90, perMile: 3.10, schedulingCharge: 24, hourlyBase: 115, nightSurcharge: 0.20,
+    perMin: 1.90, perMile: 3.10, schedulingCharge: 24, hourlyBase: 120, nightSurcharge: 0.20,
   },
   "mercedes-s-class": {
     label: "Mercedes S-Class", minimumFare: 28, pickupFare: 12,
-    perMin: 1.45, perMile: 2.25, schedulingCharge: 20, hourlyBase: 95, nightSurcharge: 0.20,
+    perMin: 1.45, perMile: 2.25, schedulingCharge: 18.0, hourlyBase: 100, nightSurcharge: 0.20,
   },
 };
 
@@ -71,7 +71,7 @@ module.exports = async function handler(req, res) {
 
   // 1. Saatlik kiralama
   if (tip === "By the hour") {
-    const hours  = Math.min(Math.max(parseInt(sure) || 2, 2), 24);
+    const hours  = Math.min(Math.max(parseInt(sure) || 3, 3), 24);
     const prices = {};
     for (const key of Object.keys(VEHICLES)) {
       prices[key] = calcHourly({ vKey: key, hours, night });
